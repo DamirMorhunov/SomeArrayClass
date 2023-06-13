@@ -1,6 +1,6 @@
 ﻿using SomeArrayClass;
 
-MyArray arr = new();
+MyArray<int> arr = new();
 arr.Add(1);
 arr.Add(2);
 arr.Add(3);
