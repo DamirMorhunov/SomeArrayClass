@@ -42,7 +42,12 @@ namespace SomeArrayClass
 
             _array = tmp;
         }
-        public void Clear() => _array =new int[_array.Length];
+
+        public void Clear()
+        {
+            _length = 0;
+            _array = new int[_length];
+        }
         public void Complete(int[] arr, int index)
         {
             int[] newArray = new int[_array.Length + arr.Length];
