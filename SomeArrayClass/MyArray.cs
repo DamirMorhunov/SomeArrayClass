@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace SomeArrayClass
 {
-    class MyArray
+    class MyArray<T>
     {
-        private int[] _array;
+        private T[] _array;
         private int _length;
 
         public MyArray()
         {
             _length = 0;
-            _array = new int[_length];
+            _array = new T[_length];
         }
 
-        public void Add(int value)
+        public void Add(T value)
         {
             _length++;
-            int[] tmp = new int[_length];
+            T[] tmp = new T[_length];
             for (int i = 0; i < _array.Length; i++)
             {
                 tmp[i] = _array[i];
@@ -34,7 +34,7 @@ namespace SomeArrayClass
         public void Remove()
         {
             _length--;
-            int[] tmp = new int[_length];
+            T[] tmp = new T[_length];
             for (int i = 0; i < _length; i++)
             {
                 tmp[i] = _array[i];
@@ -47,7 +47,7 @@ namespace SomeArrayClass
         {
             if (index >= _length || index < 0) return false;
             _length--;
-            int[] tmp = new int[_length];
+            T[] tmp = new T[_length];
             for (int i = 0; i < index; i++)
             {
                 tmp[i] = _array[i];
@@ -64,13 +64,13 @@ namespace SomeArrayClass
         public void Clear()
         {
             _length = 0;
-            _array = new int[_length];
+            _array = new T[_length];
         }
-        public bool Insert(int index, int value)
+        public bool Insert(int index, T value)
         {
             if (index >= _length || index < 0) return false;
             _length++;
-            int[] tmp = new int[_length];
+            T[] tmp = new T[_length];
             for (int i = 0; i < index; i++)
             {
                 tmp[i] = _array[i];
