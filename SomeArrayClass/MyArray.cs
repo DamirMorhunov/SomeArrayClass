@@ -9,12 +9,14 @@ namespace SomeArrayClass
 {
     class MyArray
     {
-        int[]? array;
-        public MyArray() => array = new int[0];
+        private int[] _array;
+        private int _length;
 
-        public void Add(int x) => array[array.Count() - 1] = x;
-        public void Remove() => array[array.Count() - 1] = 0;// i don't have another idea...
-        public void Clear() => array =new int[array.Length];
+        public MyArray()
+        {
+            _length = 0;
+            _array = new int[_length];
+        }
         public void Complete(int[] arr, int index)
         {
             int[] newArray = new int[array.Length + arr.Length];
