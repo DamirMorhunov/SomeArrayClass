@@ -17,6 +17,7 @@ namespace SomeArrayClass
             _length = 0;
             _array = new int[_length];
         }
+
         public void Add(int value)
         {
             _length++;
@@ -29,12 +30,14 @@ namespace SomeArrayClass
             tmp[_length - 1] = value;
             _array = tmp;
         }
+        public void Remove() => _array[_array.Count() - 1] = 0;// i don't have another idea...
+        public void Clear() => _array =new int[_array.Length];
         public void Complete(int[] arr, int index)
         {
-            int[] newArray = new int[array.Length + arr.Length];
+            int[] newArray = new int[_array.Length + arr.Length];
             for (int i = 0; i < index; i++)
             {
-                newArray[i] = array[i];
+                newArray[i] = _array[i];
             }
             for (int i = index; i < arr.Length+index; i++)
             {
@@ -49,12 +52,13 @@ namespace SomeArrayClass
 
             //}
         }
-        public void Info()
+        public void Print()
         {
-            foreach (var item in array)
+            foreach (var item in _array)
             {
                 Console.Write(item +"\t");
             }
+            Console.WriteLine();
         }
 
 
