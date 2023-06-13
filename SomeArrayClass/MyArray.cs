@@ -42,6 +42,24 @@ namespace SomeArrayClass
 
             _array = tmp;
         }
+        
+        public bool RemoveAt(int index)
+        {
+            if (index >= _length || index < 0) return false;
+            _length--;
+            int[] tmp = new int[_length];
+            for (int i = 0; i < index; i++)
+            {
+                tmp[i] = _array[i];
+            }
+
+            for (int i = index+1; i < _array.Length; i++)
+            {
+                tmp[i - 1] = _array[i];
+            }
+            _array = tmp;
+            return true;
+        }
 
         public void Clear()
         {
