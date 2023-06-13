@@ -30,7 +30,18 @@ namespace SomeArrayClass
             tmp[_length - 1] = value;
             _array = tmp;
         }
-        public void Remove() => _array[_array.Count() - 1] = 0;// i don't have another idea...
+
+        public void Remove()
+        {
+            _length--;
+            int[] tmp = new int[_length];
+            for (int i = 0; i < _length; i++)
+            {
+                tmp[i] = _array[i];
+            }
+
+            _array = tmp;
+        }
         public void Clear() => _array =new int[_array.Length];
         public void Complete(int[] arr, int index)
         {
@@ -60,7 +71,5 @@ namespace SomeArrayClass
             }
             Console.WriteLine();
         }
-
-
     }
 }
