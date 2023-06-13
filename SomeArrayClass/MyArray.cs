@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SomeArrayClass
 {
-    class MyArray<T>
+    class MyArray<T> : IEnumerable<T>
     {
         private T[] _array;
         private int _length;
@@ -93,6 +94,16 @@ namespace SomeArrayClass
                 Console.Write(item +"\t");
             }
             Console.WriteLine();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return ((IEnumerable<T>)_array).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _array.GetEnumerator();
         }
     }
 }

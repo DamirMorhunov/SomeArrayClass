@@ -12,3 +12,5 @@ arr.Print();
 //Console.WriteLine(arr.RemoveAt(2));
 Console.WriteLine(arr.Insert(2,111));
 arr.Print();
+foreach (int i in arr)
+    Console.WriteLine(i);
