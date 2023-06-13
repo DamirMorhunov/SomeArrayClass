@@ -17,6 +17,18 @@ namespace SomeArrayClass
             _length = 0;
             _array = new int[_length];
         }
+        public void Add(int value)
+        {
+            _length++;
+            int[] tmp = new int[_length];
+            for (int i = 0; i < _array.Length; i++)
+            {
+                tmp[i] = _array[i];
+            }
+
+            tmp[_length - 1] = value;
+            _array = tmp;
+        }
         public void Complete(int[] arr, int index)
         {
             int[] newArray = new int[array.Length + arr.Length];
