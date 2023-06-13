@@ -66,25 +66,25 @@ namespace SomeArrayClass
             _length = 0;
             _array = new int[_length];
         }
-        public void Complete(int[] arr, int index)
+        public bool Insert(int index, int value)
         {
-            int[] newArray = new int[_array.Length + arr.Length];
+            if (index >= _length || index < 0) return false;
+            _length++;
+            int[] tmp = new int[_length];
             for (int i = 0; i < index; i++)
             {
-                newArray[i] = _array[i];
+                tmp[i] = _array[i];
             }
-            for (int i = index; i < arr.Length+index; i++)
-            {
-                int j = 0;
-                newArray[i] = arr[j];
-                j++;
-            }
-            //for (int i = arr.Length + index; i < ; i++)
-            //{
-            //    int j = newArray.Length - (arr.Length + array.Length);
-            //    newArray[i] = array[i];
 
-            //}
+            tmp[index] = value;
+            
+            for (int i = index; i < _length-1; i++)
+            {
+                tmp[i + 1] = _array[i];
+            }
+
+            _array = tmp;
+            return true;
         }
         public void Print()
         {
