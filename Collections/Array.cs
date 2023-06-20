@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Security.Cryptography;
 
-namespace SomeArrayClass
+namespace Collections
 {
-    class MyArray<T> : IEnumerable<T>
+    public class Array<T> : IEnumerable<T>
     {
         private T[] _array;
         private int _length;
 
-        public MyArray()
+        public T this[int index]
+        {
+            get => _array[index];
+            set => _array[index] = value;
+        }
+
+        public Array()
         {
             _length = 0;
             _array = new T[_length];
@@ -43,7 +44,14 @@ namespace SomeArrayClass
 
             _array = tmp;
         }
-        
+        public bool Contains(T value)
+        {
+            foreach (T item in _array)
+            {
+                if (item.Equals(value)) return true;
+            }
+            return false;
+        }
         public bool RemoveAt(int index)
         {
             if (index >= _length || index < 0) return false;
@@ -54,7 +62,7 @@ namespace SomeArrayClass
                 tmp[i] = _array[i];
             }
 
-            for (int i = index+1; i < _array.Length; i++)
+            for (int i = index + 1; i < _array.Length; i++)
             {
                 tmp[i - 1] = _array[i];
             }
@@ -78,8 +86,8 @@ namespace SomeArrayClass
             }
 
             tmp[index] = value;
-            
-            for (int i = index; i < _length-1; i++)
+
+            for (int i = index; i < _length - 1; i++)
             {
                 tmp[i + 1] = _array[i];
             }
@@ -91,11 +99,22 @@ namespace SomeArrayClass
         {
             foreach (var item in _array)
             {
-                Console.Write(item +"\t");
+                Console.Write(item + "\t");
             }
             Console.WriteLine();
         }
+        public IEnumerable<T> Distinct()
+        {
+            //MyArray<T> result = new();
+            var result = new Array<T>();
+            for (int i = 0; i < _length; i++)
+            {
+                if (!result.Contains(_array[i]))
+                    result.Add(_array[i]);
 
+            }
+            return result;
+        }
         public IEnumerator<T> GetEnumerator()
         {
             return ((IEnumerable<T>)_array).GetEnumerator();
@@ -106,4 +125,5 @@ namespace SomeArrayClass
             return _array.GetEnumerator();
         }
     }
+
 }
