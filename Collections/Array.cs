@@ -1,31 +1,39 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 
 namespace Collections
 {
     public class Array<T> : IEnumerable<T>
     {
+        #region privateFielsd
         private T[] _array;
         private int _length;
-        
+        #endregion
         public int Length
         {
             get => _length;
             private set { _length = value; }
         }
-
         public T this[int index]
         {
             get => _array[index];
             set => _array[index] = value;
         }
-
+        #region Constructers
         public Array()
         {
             _length = 0;
             _array = new T[_length];
         }
-
+        public Array(int length)
+        {
+            _length = length;
+            _array = new T[length];
+        }
+        #endregion
+        #region Functions
         public void Add(T value)
         {
             _length++;
@@ -122,6 +130,18 @@ namespace Collections
             }
             return result;
         }
+        public bool IsEmpty() => _array.Length == 0;
+        public IEnumerable<T> CopyOf(int length)
+        {
+            Array<T> arr = new Array<T>(length);
+            for (int i = 0; i < _array.Length; i++)
+            {
+                arr[i] = _array[i];
+            }
+            return arr;
+        }
+        #endregion
+        #region ImplementIEnumerable
         public IEnumerator<T> GetEnumerator()
         {
             return ((IEnumerable<T>)_array).GetEnumerator();
@@ -131,6 +151,7 @@ namespace Collections
         {
             return _array.GetEnumerator();
         }
+        #endregion
     }
 
 }
