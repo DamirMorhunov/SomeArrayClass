@@ -7,6 +7,12 @@ namespace Collections
     {
         private T[] _array;
         private int _length;
+        
+        public int Length
+        {
+            get => _length;
+            private set { _length = value; }
+        }
 
         public T this[int index]
         {
@@ -32,10 +38,11 @@ namespace Collections
             tmp[_length - 1] = value;
             _array = tmp;
         }
-
-        public void Remove()
-        {
+        
+        public T Pop()
+        {          
             _length--;
+            T result = _array[_length];
             T[] tmp = new T[_length];
             for (int i = 0; i < _length; i++)
             {
@@ -43,6 +50,7 @@ namespace Collections
             }
 
             _array = tmp;
+            return result;
         }
         public bool Contains(T value)
         {
@@ -51,6 +59,14 @@ namespace Collections
                 if (item.Equals(value)) return true;
             }
             return false;
+        }
+        public int IndexOf(T value)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i].Equals(value)) return i;               
+            }
+            return -1;
         }
         public bool RemoveAt(int index)
         {
@@ -69,7 +85,7 @@ namespace Collections
             _array = tmp;
             return true;
         }
-
+        public bool Remove(T value) => RemoveAt(IndexOf(value));
         public void Clear()
         {
             _length = 0;
@@ -95,14 +111,6 @@ namespace Collections
             _array = tmp;
             return true;
         }
-        public void Print()
-        {
-            foreach (var item in _array)
-            {
-                Console.Write(item + "\t");
-            }
-            Console.WriteLine();
-        }
         public IEnumerable<T> Distinct()
         {
             //MyArray<T> result = new();
@@ -111,7 +119,6 @@ namespace Collections
             {
                 if (!result.Contains(_array[i]))
                     result.Add(_array[i]);
-
             }
             return result;
         }
